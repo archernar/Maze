@@ -9,12 +9,6 @@ public class Maze {
     static ArrayList<Room> arrRoom = new ArrayList<Room>();
     static Room exitroom = new Room("EXIT");
     static Room entranceroom = new Room("ENTRANCE");
-    static final int LEFT = 0;
-    static final int RIGHT = 1;
-    static final int LEFTLEFT = 2;
-    static final int RIGHTRIGHT = 3;
-    static final int UP = 4;
-    static final int DOWN = 5;
 
     public static String randomString() {
         int leftLimit = 48; // numeral '0'
@@ -35,12 +29,12 @@ public class Maze {
         int d = 0;
         while (d < 1000000) {
             int turn = random.nextInt(4 + 1 - 1) + 1;
-            if (turn == LEFT)  r = r.doorLeft();
-            if (turn == RIGHT) r = r.doorRight();
-            if (turn == LEFTLEFT)  r = r.doorLeftLeft();
-            if (turn == RIGHTRIGHT) r = r.doorRightRight();
-            if (turn == UP) r = r.doorUp();
-            if (turn == DOWN) r = r.doorDown();
+            if (turn == MAZEWORLD.LEFT)  r = r.doorLeft();
+            if (turn == MAZEWORLD.RIGHT) r = r.doorRight();
+            if (turn == MAZEWORLD.LEFTLEFT)  r = r.doorLeftLeft();
+            if (turn == MAZEWORLD.RIGHTRIGHT) r = r.doorRightRight();
+            if (turn == MAZEWORLD.UP) r = r.doorUp();
+            if (turn == MAZEWORLD.DOWN) r = r.doorDown();
             if (r == exitroom) { 
                 System.out.println("Exiting " + r.name);
                 d = 50000;
@@ -55,14 +49,7 @@ public class Maze {
     }
 
     private static String direction(int t) {
-        String szRet = "";
-        if (t==0) szRet = "LEFT";
-        if (t==1) szRet = "RIGHT";
-        if (t==2) szRet = "LEFTLEFT";
-        if (t==3) szRet = "RIGHTRIGHT";
-        if (t==4) szRet = "UP";
-        if (t==5) szRet = "DOWN";
-        return szRet;
+        return MAZEWORLD.directions[t];
     }
     static int recursive_entry = 0;
     private static int Seekr(Room r, Room entranceroom, Room exitroom) {
@@ -94,21 +81,21 @@ public class Maze {
                 }
                 String sz = "";
 
-                if (turn == LEFT)  sz = r.doorLeft().name;
-                if (turn == RIGHT) sz = r.doorRight().name;
-                if (turn == LEFTLEFT)  sz = r.doorLeftLeft().name;
-                if (turn == RIGHTRIGHT) sz = r.doorRightRight().name;
-                if (turn == UP) sz = r.doorUp().name;
-                if (turn == DOWN) sz = r.doorDown().name;
+                if (turn == MAZEWORLD.LEFT)  sz = r.doorLeft().name;
+                if (turn == MAZEWORLD.RIGHT) sz = r.doorRight().name;
+                if (turn == MAZEWORLD.LEFTLEFT)  sz = r.doorLeftLeft().name;
+                if (turn == MAZEWORLD.RIGHTRIGHT) sz = r.doorRightRight().name;
+                if (turn == MAZEWORLD.UP) sz = r.doorUp().name;
+                if (turn == MAZEWORLD.DOWN) sz = r.doorDown().name;
 
                 System.out.println("    " + direction(turn) + " Turning to " + sz + "   " + recursive_entry);
 
-                if (turn == LEFT)  r = r.doorLeft();
-                if (turn == RIGHT) r = r.doorRight();
-                if (turn == LEFTLEFT)  r = r.doorLeftLeft();
-                if (turn == RIGHTRIGHT) r = r.doorRightRight();
-                if (turn == UP) r = r.doorUp();
-                if (turn == DOWN) r = r.doorDown();
+                if (turn == MAZEWORLD.LEFT)  r = r.doorLeft();
+                if (turn == MAZEWORLD.RIGHT) r = r.doorRight();
+                if (turn == MAZEWORLD.LEFTLEFT)  r = r.doorLeftLeft();
+                if (turn == MAZEWORLD.RIGHTRIGHT) r = r.doorRightRight();
+                if (turn == MAZEWORLD.UP) r = r.doorUp();
+                if (turn == MAZEWORLD.DOWN) r = r.doorDown();
                 try {     
                     nRet = Seekr(r,entranceroom,exitroom);
                 }

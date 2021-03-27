@@ -1,6 +1,13 @@
 import java.util.*;
 
 public class MAZEWORLD {
+    static final String directions[] = {"LEFT","RIGHT","LEFTLEFT","RIGHTRIGHT","UP", "DOWN"};
+    static final int LEFT = 0;
+    static final int RIGHT = 1;
+    static final int LEFTLEFT = 2;
+    static final int RIGHTRIGHT = 3;
+    static final int UP = 4;
+    static final int DOWN = 5;
         
     public static boolean oneoutoften() {
         Random random = new Random();
