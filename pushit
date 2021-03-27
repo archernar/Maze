@@ -25,7 +25,8 @@ do
                print "adding..."
                git add Maze.java
                git add Door.java
-               git add room.java
+               git add Room.java
+               git add MAZEWORLD.java
                git add pushit
                git add buildmd
                git add README.md

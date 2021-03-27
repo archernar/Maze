@@ -37,22 +37,6 @@
             return generatedString;
         }
     
-        private static boolean oneoutoften() {
-            Random random = new Random();
-            int r = random.nextInt(10 + 1 - 1) + 1;
-            return (r==1) ? true : false;
-        }
-        private static int randDoor() {
-            Random random = new Random();
-            return random.nextInt(5 + 1 - 0) + 0;
-        }
-        private static int rand(int min, int max) {
-            Random random = new Random();
-            return random.nextInt(max + 1 - min) + min;
-        }
-        private static int nextdoor(int d) {
-            return ( (d+1) > 5) ? 0 : d+1;
-        }
     
         private static int Seek(Room r, Room entranceroom, Room exitroom) {
             Random random = new Random();
@@ -197,6 +181,7 @@
     
     }
 # Room
+
     //  ____                          _                  
     // |  _ \ ___   ___  _ __ ___    (_) __ ___   ____ _ 
     // | |_) / _ \ / _ \| '_ ` _ \   | |/ _` \ \ / / _` |
@@ -294,8 +279,6 @@
     }
 # Door
 
-
-
     //  ____                    _                  
     // |  _ \  ___   ___  _ __ (_) __ ___   ____ _ 
     // | | | |/ _ \ / _ \| '__|| |/ _` \ \ / / _` |
@@ -325,3 +308,34 @@
        }
     
     }
+# Constants and Statics
+
+    //  __  __    _     ____________        _____  ____  _     ____    _             
+    // |  \/  |  / \   |__  / ____\ \      / / _ \|  _ \| |   |  _ \  (_) __ ___   __
+    // | |\/| | / _ \    / /|  _|  \ \ /\ / / | | | |_) | |   | | | | | |/ _` \ \ / /
+    // | |  | |/ ___ \  / /_| |___  \ V  V /| |_| |  _ <| |___| |_| | | | (_| |\ V / 
+    // |_|  |_/_/   \_\/____|_____|  \_/\_/  \___/|_| \_\_____|____(_)/ |\__,_| \_/  
+    //                                                              |__/             
+    //        
+    //   __ _ 
+    //  / _` |
+    // | (_| |
+    //  \__,_|
+    //        
+    
+        private static boolean oneoutoften() {
+            Random random = new Random();
+            int r = random.nextInt(10 + 1 - 1) + 1;
+            return (r==1) ? true : false;
+        }
+        private static int randDoor() {
+            Random random = new Random();
+            return random.nextInt(5 + 1 - 0) + 0;
+        }
+        private static int rand(int min, int max) {
+            Random random = new Random();
+            return random.nextInt(max + 1 - min) + min;
+        }
+        private static int nextdoor(int d) {
+            return ( (d+1) > 5) ? 0 : d+1;
+        }
