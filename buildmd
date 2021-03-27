@@ -1,4 +1,5 @@
 echo "# Maze" > /tmp/readme
+echo "" >> /tmp/readme
 figlet Maze.java | gawk '{print "    // " $0}' >> /tmp/readme
 cat Maze.java | gawk '{print "    " $0}' >> /tmp/readme
 
@@ -13,14 +14,3 @@ echo "" >> /tmp/readme
 figlet Door.java | gawk '{print "    // " $0}' >> /tmp/readme
 cat Door.java | gawk '{print "    " $0}' >> /tmp/readme
 
-cat /tmp/readme | gawk '
-function ltrim(s) { sub(/^ */, "", s); return s }
-function rtrim(s) { sub(/ *$/, "", s); return s }
-function trim(s) { return rtrim(ltrim(s)) }
-BEGIN {
-    pre = ""
-}
-{
-    pre="    "
-    print pre $0
-}' 
