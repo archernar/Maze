@@ -13,4 +13,4 @@ echo "" >> /tmp/readme
 echo "" >> /tmp/readme
 figlet Door.java | gawk '{print "    // " $0}' >> /tmp/readme
 cat Door.java | gawk '{print "    " $0}' >> /tmp/readme
-
+cat /tmp/readme
