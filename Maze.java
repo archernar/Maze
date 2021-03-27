@@ -2,7 +2,7 @@ import java.util.*;
 // https://examples.javacodegeeks.com/java-lang-stackoverflowerror-how-to-solve-stackoverflowerror/
 
 public class Maze {
-    static final int ROOMCOUNT = 600;
+    static final int ROOMCOUNT = 132;
     static final int ENTRANCE  = ROOMCOUNT-1;
     static Room[] rooms = new Room[ROOMCOUNT];
     static ArrayList<Door> arrDoor = new ArrayList<Door>();
@@ -25,7 +25,7 @@ public class Maze {
             if (turn == MAZEWORLD.UP) r = r.doorUp();
             if (turn == MAZEWORLD.DOWN) r = r.doorDown();
             if (r == exitroom) { 
-                System.out.println("Exiting " + r.name);
+                System.out.println("Exit: ");
                 d = 50000;
             }
             else {
@@ -45,12 +45,12 @@ public class Maze {
         int nRet = 0;
         recursive_entry++;
         if ( recursive_entry > 1000 ){
-            System.out.println("Quiting");
+            System.out.println("Quit:");
             System.exit(1);
         }
 
             if (r == exitroom) { 
-                System.out.println("Exiting " + r.name);
+                System.out.println("Exit: ");
                 nRet=1;
             }
             else {
@@ -64,6 +64,7 @@ public class Maze {
                     turn = MAZEWORLD.nextdoor(turn);
                     ct++;
                 }
+                // Go through any door locked of otherwise
                 if ( ct == 10 ) {
                     turn = MAZEWORLD.randDoor();
                 }
@@ -95,16 +96,16 @@ public class Maze {
 
         return nRet;
     }
-    private static Room randomRoom(Room rx) {
+    private static Room randomRoom(Room roomCurrentlyIn) {
         Room r = rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)]; 
-        while (r == rx)
+        while (r == roomCurrentlyIn)
             r = rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)]; 
         return r;
     }
 
     public static void main(String[] args) {
 
-        System.out.println("roomcount: " + ROOMCOUNT);
+
         for (int i=0;i<ROOMCOUNT;i++) {
             rooms[i] = new Room();
             arrRoom.add(rooms[i]);
@@ -112,8 +113,9 @@ public class Maze {
             for (int j=0;j<rooms[i].doorcount;j++) {
                 arrDoor.add(rooms[i].doors[j]);
             }
-
         }
+        System.out.println("Maze: " + ROOMCOUNT      + " rooms");
+        System.out.println("Maze: " + arrDoor.size() + " doors");
         Room rr;
         for (int i = 0; i < arrDoor.size(); i++) {
             rr = randomRoom((arrDoor.get(i)).roomTheDoorIsIn); 
@@ -142,6 +144,9 @@ public class Maze {
            System.out.println("Exception");
            System.exit(1);
        }
+       System.out.println("");
+       System.out.println("Maze: " + ROOMCOUNT      + " rooms");
+       System.out.println("Maze: " + arrDoor.size() + " doors");
 
 }
 
