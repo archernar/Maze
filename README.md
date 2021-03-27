@@ -20,7 +20,10 @@
         static ArrayList<Room> arrRoom = new ArrayList<Room>();
         static Room exitroom = new Room("EXIT");
         static Room entranceroom = new Room("ENTRANCE");
-    
+        static int recursive_entry = 0;
+        //
+        // Non-Recursive Seek Method
+        //
         private static int Seek(Room r, Room entranceroom, Room exitroom) {
             Random random = new Random();
             int d = 0;
@@ -45,10 +48,9 @@
             return 0;
         }
     
-        private static String direction(int t) {
-            return MAZEWORLD.directions[t];
-        }
-        static int recursive_entry = 0;
+        //
+        // Recursive Seek Method
+        //
         private static int Seekr(Room r, Room entranceroom, Room exitroom) {
             Random random = new Random();
             int nRet = 0;
@@ -67,8 +69,8 @@
                     int turn = MAZEWORLD.randDoor();
                     int ct = 0;
                     while ( (r.doors[turn].gonethroughalready) && (ct<10) && (r.doors[turn].locked)) {
-                        if  (r.doors[turn].gonethroughalready) System.out.println("    " + (direction(turn)) + " Door is Open, Turning again...");
-                        if  (r.doors[turn].locked) System.out.println("    " + (direction(turn)) + " Door is Locked, Turning again...");
+                        if  (r.doors[turn].gonethroughalready) System.out.println("    " + (MAZEWORLD.direction(turn)) + " Door is Open, Turning again...");
+                        if  (r.doors[turn].locked) System.out.println("    " + (MAZEWORLD.direction(turn)) + " Door is Locked, Turning again...");
                         //turn = random.nextInt(6 + 1 - 1) + 1;
                         turn = MAZEWORLD.nextdoor(turn);
                         ct++;
@@ -85,7 +87,7 @@
                     if (turn == MAZEWORLD.UP) sz = r.doorUp().name;
                     if (turn == MAZEWORLD.DOWN) sz = r.doorDown().name;
     
-                    System.out.println("    " + direction(turn) + " Turning to " + sz + "   " + recursive_entry);
+                    System.out.println("    " + MAZEWORLD.direction(turn) + " Turning to " + sz + "   " + recursive_entry);
     
                     if (turn == MAZEWORLD.LEFT)  r = r.doorLeft();
                     if (turn == MAZEWORLD.RIGHT) r = r.doorRight();
@@ -330,5 +332,8 @@
         }
         public static int nextdoor(int d) {
             return ( (d+1) > 5) ? 0 : d+1;
+        }
+        public static String direction(int t) {
+            return MAZEWORLD.directions[t];
         }
     }

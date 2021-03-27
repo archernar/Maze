@@ -37,4 +37,7 @@ public class MAZEWORLD {
     public static int nextdoor(int d) {
         return ( (d+1) > 5) ? 0 : d+1;
     }
+    public static String direction(int t) {
+        return MAZEWORLD.directions[t];
+    }
 }
