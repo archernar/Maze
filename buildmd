@@ -11,37 +11,6 @@ BEGIN {
     pre = ""
 }
 {
-    sz=$0
-}
-/^["] MD-CODE$/ {
     pre="    "
-    next
-}
-/^["] MD-LINK/ {
-    pre=""
-    sub(/^["] MD-LINK/, "", sz)
-    print trim(sz)
-    next
-}
-/^["]###/ {
-    pre=""
-    sub(/^["]###/, "", sz)
-    print "### " trim(sz)
-    next
-}
-/^["]##/ {
-    pre=""
-    sub(/^["]##/, "", sz)
-    print "## " trim(sz)
-    next
-}
-/^["]#/ {
-    pre=""
-    sub(/^["]#/, "", sz)
-    print "# " trim(sz)
-    next
-}
-
-{
-    print pre sz
+    print pre $0
 }' 
