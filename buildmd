@@ -18,7 +18,7 @@ cat Door.java | gawk '{print "    " $0}' >> /tmp/readme
 
 echo "# Constants and Statics" >> /tmp/readme
 echo "" >> /tmp/readme
-figlet MAZEWORLD.java | gawk '{print "    // " $0}' >> /tmp/readme
+figlet -w 88 MAZEWORLD.java | gawk '{print "    // " $0}' >> /tmp/readme
 cat MAZEWORLD.java | gawk '{print "    " $0}' >> /tmp/readme
 
 
