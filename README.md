@@ -21,25 +21,11 @@
         static Room exitroom = new Room("EXIT");
         static Room entranceroom = new Room("ENTRANCE");
     
-        public static String randomString() {
-            int leftLimit = 48; // numeral '0'
-            int rightLimit = 122; // letter 'z'
-            int targetStringLength = 4;
-            Random random = new Random();
-            String generatedString = random.ints(leftLimit, rightLimit + 1)
-              .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-              .limit(targetStringLength)
-              .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-              .toString();
-            return generatedString;
-        }
-    
-    
         private static int Seek(Room r, Room entranceroom, Room exitroom) {
             Random random = new Random();
             int d = 0;
             while (d < 1000000) {
-                int turn = random.nextInt(4 + 1 - 1) + 1;
+                int turn = MAZEWORLD.randDoor();
                 if (turn == MAZEWORLD.LEFT)  r = r.doorLeft();
                 if (turn == MAZEWORLD.RIGHT) r = r.doorRight();
                 if (turn == MAZEWORLD.LEFTLEFT)  r = r.doorLeftLeft();
@@ -131,7 +117,7 @@
             for (int i=0;i<ROOMCOUNT;i++) {
                 rooms[i] = new Room();
                 arrRoom.add(rooms[i]);
-                rooms[i].name = randomString();
+                rooms[i].name = MAZEWORLD.randomString();
                 for (int j=0;j<rooms[i].doorcount;j++) {
                     arrDoor.add(rooms[i].doors[j]);
                 }
@@ -159,7 +145,7 @@
     
            try {     
            //  int o  = Seek(entranceroom, entranceroom, exitroom);
-            int oo = Seekr(entranceroom, entranceroom, exitroom);
+           int oo = Seekr(entranceroom, entranceroom, exitroom);
            }
            catch (Exception e) {
                System.out.println("Exception");
@@ -317,6 +303,18 @@
         static final int UP = 4;
         static final int DOWN = 5;
             
+        public static String randomString() {
+            int leftLimit = 48; // numeral '0'
+            int rightLimit = 122; // letter 'z'
+            int targetStringLength = 4;
+            Random random = new Random();
+            String generatedString = random.ints(leftLimit, rightLimit + 1)
+              .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+              .limit(targetStringLength)
+              .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+              .toString();
+            return generatedString;
+        }
         public static boolean oneoutoften() {
             Random random = new Random();
             int r = random.nextInt(10 + 1 - 1) + 1;
