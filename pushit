@@ -1,0 +1,43 @@
+#!/usr/bin/ksh
+Tmp="/tmp/$$"
+TmpDir="/tmp/dir$$"
+trap 'rm -f "$Tmp" >/dev/null 2>&1' 0
+trap "exit 2" 1 2 3 13 15
+rm $Tmp  >/dev/null 2>&1
+
+# #######################################
+# #######################################
+confirm() {
+      print -n "Enter '10111' to confirm >> "
+      read STRIN
+      if [ "$STRIN" != "10111" ] ; then
+           print "   Exiting - No Match"
+           exit 1
+      fi
+}
+# #######################################
+REPO=Maze
+while getopts "gh" arg
+do
+	case $arg in
+            g) print "Building README.md"
+               ./buildmd > README.md
+               print "adding..."
+               git add Maze.java
+               git add Door.java
+               git add room.java
+               git add pushit
+               git add buildmd
+               git add README.md
+               print "committing..."
+               git commit -m "Update"
+               echo "./pushit -p to push origin to main"
+               git push -u origin main
+               exit 0 
+               ;;
+            h) echo " -g     do local and remote update"
+               echo " -h     help"
+               exit 0 
+               ;;
+        esac
+done

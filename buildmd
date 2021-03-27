@@ -1,0 +1,47 @@
+
+cat Maze.java > /tmp/readme
+cat Door.java >> /tmp/readme
+cat Room.java >> /tmp/readme
+
+cat /tmp/readme | gawk '
+function ltrim(s) { sub(/^ */, "", s); return s }
+function rtrim(s) { sub(/ *$/, "", s); return s }
+function trim(s) { return rtrim(ltrim(s)) }
+BEGIN {
+    pre = ""
+}
+{
+    sz=$0
+}
+/^["] MD-CODE$/ {
+    pre="    "
+    next
+}
+/^["] MD-LINK/ {
+    pre=""
+    sub(/^["] MD-LINK/, "", sz)
+    print trim(sz)
+    next
+}
+/^["]###/ {
+    pre=""
+    sub(/^["]###/, "", sz)
+    print "### " trim(sz)
+    next
+}
+/^["]##/ {
+    pre=""
+    sub(/^["]##/, "", sz)
+    print "## " trim(sz)
+    next
+}
+/^["]#/ {
+    pre=""
+    sub(/^["]#/, "", sz)
+    print "# " trim(sz)
+    next
+}
+
+{
+    print pre sz
+}' 
