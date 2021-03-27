@@ -2,9 +2,9 @@ import java.util.*;
 // https://examples.javacodegeeks.com/java-lang-stackoverflowerror-how-to-solve-stackoverflowerror/
 
 public class Maze {
-    static final int ROOMCOUNT = 132;
+    static final int ROOMCOUNT = 250000;
     static final int ENTRANCE  = ROOMCOUNT-1;
-    static final int MAXDEPTH  = 1000;
+    static final int MAXDEPTH  = 400000;
     static Room[] rooms = new Room[ROOMCOUNT];
     static ArrayList<Door> arrDoor = new ArrayList<Door>();
     static ArrayList<Room> arrRoom = new ArrayList<Room>();
@@ -46,6 +46,7 @@ public class Maze {
         recursive_entry++;
         if ( recursive_entry > MAXDEPTH ){
             System.out.println("Quit:");
+            System.out.println(MAZEWORLD.rt());
             System.exit(1);
         }
 
@@ -54,7 +55,16 @@ public class Maze {
                 nRet=1;
             }
             else {
-                System.out.println("In  : " + r);
+                try {     
+                    System.out.println("In  : " + r);
+                }
+                catch (StackOverflowError e) {
+                   System.exit(1);
+                } 
+                catch (Exception e) {
+                   System.out.println(MAZEWORLD.rt());
+                   System.exit(1);
+                } 
                 int turn = MAZEWORLD.randDoor();
                 int ct = 0;
                 while ( (r.doors[turn].gonethroughalready) && (ct<10) && (r.doors[turn].locked)) {
@@ -65,31 +75,35 @@ public class Maze {
                 }
                 // Go through any door locked of otherwise
                 if ( ct == 10 ) {
-                    turn = MAZEWORLD.randDoor();
+                    System.out.println("Done: " + r);
+                    nRet=1;
                 }
-                String sz = "";
+                else {
+                    String sz = "";
 
-                if (turn == MAZEWORLD.LEFT)  sz = r.doorLeft().name;
-                if (turn == MAZEWORLD.RIGHT) sz = r.doorRight().name;
-                if (turn == MAZEWORLD.LEFTLEFT)  sz = r.doorLeftLeft().name;
-                if (turn == MAZEWORLD.RIGHTRIGHT) sz = r.doorRightRight().name;
-                if (turn == MAZEWORLD.UP) sz = r.doorUp().name;
-                if (turn == MAZEWORLD.DOWN) sz = r.doorDown().name;
+                    if (turn == MAZEWORLD.LEFT)  sz = r.doorLeft().name;
+                    if (turn == MAZEWORLD.RIGHT) sz = r.doorRight().name;
+                    if (turn == MAZEWORLD.LEFTLEFT)  sz = r.doorLeftLeft().name;
+                    if (turn == MAZEWORLD.RIGHTRIGHT) sz = r.doorRightRight().name;
+                    if (turn == MAZEWORLD.UP) sz = r.doorUp().name;
+                    if (turn == MAZEWORLD.DOWN) sz = r.doorDown().name;
 
-                System.out.println("Turn: " + MAZEWORLD.direction(turn) + " " + sz + " " + recursive_entry);
+                    System.out.println("Turn: " + MAZEWORLD.direction(turn) + " " + sz + " " + recursive_entry);
 
-                if (turn == MAZEWORLD.LEFT)  r = r.doorLeft();
-                if (turn == MAZEWORLD.RIGHT) r = r.doorRight();
-                if (turn == MAZEWORLD.LEFTLEFT)  r = r.doorLeftLeft();
-                if (turn == MAZEWORLD.RIGHTRIGHT) r = r.doorRightRight();
-                if (turn == MAZEWORLD.UP) r = r.doorUp();
-                if (turn == MAZEWORLD.DOWN) r = r.doorDown();
-                try {     
-                    nRet = Seekr(r,entranceroom,exitroom);
-                }
-                catch (Exception e) {
-                   System.out.println("Exception");
-                   System.exit(1);
+                    if (turn == MAZEWORLD.LEFT)  r = r.doorLeft();
+                    if (turn == MAZEWORLD.RIGHT) r = r.doorRight();
+                    if (turn == MAZEWORLD.LEFTLEFT)  r = r.doorLeftLeft();
+                    if (turn == MAZEWORLD.RIGHTRIGHT) r = r.doorRightRight();
+                    if (turn == MAZEWORLD.UP) r = r.doorUp();
+                    if (turn == MAZEWORLD.DOWN) r = r.doorDown();
+                    try {     
+                        nRet = Seekr(r,entranceroom,exitroom);
+                    }
+                    catch (Exception e) {
+                       System.out.println("Exception");
+                       System.out.println(MAZEWORLD.rt());
+                       System.exit(1);
+                    }
                 }
             }
 
@@ -142,9 +156,11 @@ public class Maze {
        }
        catch (Exception e) {
            System.out.println("Exception");
+           System.out.println(MAZEWORLD.rt());
            System.exit(1);
        }
        System.out.println("");
+       System.out.println(MAZEWORLD.rt());
        System.out.println("Maze: " + ROOMCOUNT      + " rooms");
        System.out.println("Maze: " + arrDoor.size() + " doors");
 

@@ -8,8 +8,20 @@ public class MAZEWORLD {
     static final int RIGHTRIGHT = 3;
     static final int UP = 4;
     static final int DOWN = 5;
-        
+
     public static String randomString() {
+        int length = 4;
+        String candidateChars="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            sb.append(candidateChars.charAt(random.nextInt(candidateChars
+                    .length())));
+        }
+        return sb.toString();
+    }
+        
+    public static String randomString2() {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 4;
@@ -40,4 +52,16 @@ public class MAZEWORLD {
     public static String direction(int t) {
         return MAZEWORLD.directions[t];
     }
+
+    public static String rt() {
+    final double z = 1024.0 / 1024.0;
+    Runtime rt = Runtime.getRuntime();
+    Locale.setDefault(Locale.US);
+         return "" + 
+                String.format("Max %,d, ", rt.maxMemory()) +
+                String.format("Total %,d, ", rt.totalMemory()) +
+                String.format("Free %,d, ", rt.freeMemory()) +
+                String.format("Avail %,d", rt.totalMemory() - rt.freeMemory());
+    }
+
 }
