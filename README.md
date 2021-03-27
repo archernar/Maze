@@ -15,6 +15,7 @@
     public class Maze {
         static final int ROOMCOUNT = 132;
         static final int ENTRANCE  = ROOMCOUNT-1;
+        static final int MAXDEPTH  = 1000;
         static Room[] rooms = new Room[ROOMCOUNT];
         static ArrayList<Door> arrDoor = new ArrayList<Door>();
         static ArrayList<Room> arrRoom = new ArrayList<Room>();
@@ -25,9 +26,8 @@
         // Non-Recursive Seek Method
         //
         private static int Seek(Room r, Room entranceroom, Room exitroom) {
-            Random random = new Random();
             int d = 0;
-            while (d < 1000000) {
+            while (d < MAXDEPTH) {
                 int turn = MAZEWORLD.randDoor();
                 if (turn == MAZEWORLD.LEFT)  r = r.doorLeft();
                 if (turn == MAZEWORLD.RIGHT) r = r.doorRight();
@@ -37,10 +37,10 @@
                 if (turn == MAZEWORLD.DOWN) r = r.doorDown();
                 if (r == exitroom) { 
                     System.out.println("Exit: ");
-                    d = 50000;
+                    d = MAXDEPTH+1;
                 }
                 else {
-                    System.out.println("I am in " + r.name + " {{ " + r.doorMap());
+                    System.out.println(r);
                 }
     
                 d++;
@@ -55,7 +55,7 @@
             Random random = new Random();
             int nRet = 0;
             recursive_entry++;
-            if ( recursive_entry > 1000 ){
+            if ( recursive_entry > MAXDEPTH ){
                 System.out.println("Quit:");
                 System.exit(1);
             }
@@ -71,7 +71,6 @@
                     while ( (r.doors[turn].gonethroughalready) && (ct<10) && (r.doors[turn].locked)) {
                         if  (r.doors[turn].gonethroughalready) System.out.println("Turn: " + (MAZEWORLD.direction(turn)) + " Door-Open, Turn again");
                         if  (r.doors[turn].locked) System.out.println("Turn: " + (MAZEWORLD.direction(turn)) + " Door-Locked, Turn again");
-                        //turn = random.nextInt(6 + 1 - 1) + 1;
                         turn = MAZEWORLD.nextdoor(turn);
                         ct++;
                     }
