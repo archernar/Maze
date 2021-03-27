@@ -2,7 +2,7 @@ import java.util.*;
 // https://examples.javacodegeeks.com/java-lang-stackoverflowerror-how-to-solve-stackoverflowerror/
 
 public class Maze {
-    static final int ROOMCOUNT = 60;
+    static final int ROOMCOUNT = 600;
     static final int ENTRANCE  = ROOMCOUNT-1;
     static Room[] rooms = new Room[ROOMCOUNT];
     static ArrayList<Door> arrDoor = new ArrayList<Door>();
@@ -54,12 +54,12 @@ public class Maze {
                 nRet=1;
             }
             else {
-                System.out.println("I am in " + r.name + "   There are doors here: " + r.doorMap());
+                System.out.println("In  : " + r);
                 int turn = MAZEWORLD.randDoor();
                 int ct = 0;
                 while ( (r.doors[turn].gonethroughalready) && (ct<10) && (r.doors[turn].locked)) {
-                    if  (r.doors[turn].gonethroughalready) System.out.println("    " + (MAZEWORLD.direction(turn)) + " Door is Open, Turning again...");
-                    if  (r.doors[turn].locked) System.out.println("    " + (MAZEWORLD.direction(turn)) + " Door is Locked, Turning again...");
+                    if  (r.doors[turn].gonethroughalready) System.out.println("Turn: " + (MAZEWORLD.direction(turn)) + " Door-Open, Turn again");
+                    if  (r.doors[turn].locked) System.out.println("Turn: " + (MAZEWORLD.direction(turn)) + " Door-Locked, Turn again");
                     //turn = random.nextInt(6 + 1 - 1) + 1;
                     turn = MAZEWORLD.nextdoor(turn);
                     ct++;
@@ -76,7 +76,7 @@ public class Maze {
                 if (turn == MAZEWORLD.UP) sz = r.doorUp().name;
                 if (turn == MAZEWORLD.DOWN) sz = r.doorDown().name;
 
-                System.out.println("    " + MAZEWORLD.direction(turn) + " Turning to " + sz + "   " + recursive_entry);
+                System.out.println("Turn: " + MAZEWORLD.direction(turn) + " " + sz + " " + recursive_entry);
 
                 if (turn == MAZEWORLD.LEFT)  r = r.doorLeft();
                 if (turn == MAZEWORLD.RIGHT) r = r.doorRight();

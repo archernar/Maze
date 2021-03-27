@@ -11,6 +11,9 @@ public class Room {
         Random random = new Random();
         return random.nextInt(max + 1 - min) + min;
     }
+    public String toString() {
+        return this.name + " " + this.doorMap();
+    }
 
     public Room() {
         int n = Room.rand(1,MAXDOORSINROOM);
