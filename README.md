@@ -1,4 +1,5 @@
 # Maze
+## Compile with javac -d ./classes *.java
 
     //  __  __                  _                  
     // |  \/  | __ _ _______   (_) __ ___   ____ _ 

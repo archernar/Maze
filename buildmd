@@ -1,5 +1,5 @@
 echo "# Maze" > /tmp/readme
-echo "## Compile with javac -d ./classes *.java" >> ../tmp/readme
+echo "## Compile with javac -d ./classes *.java" >> /tmp/readme
 
 echo "" >> /tmp/readme
 figlet Maze.java | gawk '{print "    // " $0}' >> /tmp/readme
