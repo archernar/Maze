@@ -116,6 +116,7 @@
         public static void main(String[] args) {
     
     
+    
             for (int i=0;i<ROOMCOUNT;i++) {
                 rooms[i] = new Room();
                 arrRoom.add(rooms[i]);
