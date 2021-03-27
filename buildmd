@@ -1,8 +1,12 @@
 echo "# Maze" > /tmp/readme
 figlet Maze.java | gawk '{print "    // " $0}' >> /tmp/readme
 cat Maze.java | gawk '{print "    " $0}' >> /tmp/readme
+
+echo "# Room" >> /tmp/readme
 figlet Room.java | gawk '{print "    // " $0}' >> /tmp/readme
 cat Room.java | gawk '{print "    " $0}' >> /tmp/readme
+
+echo "# Door" >> /tmp/readme
 figlet Door.java | gawk '{print "    // " $0}' >> /tmp/readme
 cat Door.java | gawk '{print "    " $0}' >> /tmp/readme
 
