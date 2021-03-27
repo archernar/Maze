@@ -33,10 +33,25 @@ public class MAZEWORLD {
           .toString();
         return generatedString;
     }
+    public static boolean oneoutofahundred() {
+        Random random = new Random();
+        int r = random.nextInt(100 + 1 - 1) + 1;
+        return (r==1) ? true : false;
+    }
     public static boolean oneoutoften() {
         Random random = new Random();
         int r = random.nextInt(10 + 1 - 1) + 1;
         return (r==1) ? true : false;
+    }
+    public static boolean threeoutoften() {
+        Random random = new Random();
+        int r = random.nextInt(10 + 1 - 1) + 1;
+        return (r<=3) ? true : false;
+    }
+    public static boolean fiveoutoften() {
+        Random random = new Random();
+        int r = random.nextInt(10 + 1 - 1) + 1;
+        return (r<=5) ? true : false;
     }
     public static int randDoor() {
         Random random = new Random();

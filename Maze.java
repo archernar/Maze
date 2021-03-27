@@ -2,7 +2,7 @@ import java.util.*;
 // https://examples.javacodegeeks.com/java-lang-stackoverflowerror-how-to-solve-stackoverflowerror/
 
 public class Maze {
-    static final int ROOMCOUNT = 250000;
+    static final int ROOMCOUNT = 500000;
     static final int ENTRANCE  = ROOMCOUNT-1;
     static final int MAXDEPTH  = 400000;
     static Room[] rooms = new Room[ROOMCOUNT];
@@ -134,7 +134,7 @@ public class Maze {
         for (int i = 0; i < arrDoor.size(); i++) {
             rr = randomRoom((arrDoor.get(i)).roomTheDoorIsIn); 
             (arrDoor.get(i)).attach( rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)] );
-            if (MAZEWORLD.oneoutoften())  (arrDoor.get(i)).locked = true;
+            if (MAZEWORLD.oneoutofahundred())  (arrDoor.get(i)).locked = true;
         }
 
         int exitDoor = MAZEWORLD.rand(0,arrDoor.size()-1);
@@ -142,6 +142,13 @@ public class Maze {
 
         rooms[ENTRANCE].name="ENTRANCE";
         entranceroom=rooms[ENTRANCE];
+
+        for (int i=0;i<ROOMCOUNT;i++)
+            if (rooms[i].allDoorsLocked()) {
+                System.out.println("LOCK: " + rooms[i]);
+                System.exit(0);
+            }
+
         if (false) {
             for (int i=0;i<ROOMCOUNT;i++) {
                 for (int j=0;j<rooms[i].doorcount;j++) {

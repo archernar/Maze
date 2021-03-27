@@ -13,7 +13,7 @@
     // https://examples.javacodegeeks.com/java-lang-stackoverflowerror-how-to-solve-stackoverflowerror/
     
     public class Maze {
-        static final int ROOMCOUNT = 250000;
+        static final int ROOMCOUNT = 500000;
         static final int ENTRANCE  = ROOMCOUNT-1;
         static final int MAXDEPTH  = 400000;
         static Room[] rooms = new Room[ROOMCOUNT];
@@ -145,7 +145,7 @@
             for (int i = 0; i < arrDoor.size(); i++) {
                 rr = randomRoom((arrDoor.get(i)).roomTheDoorIsIn); 
                 (arrDoor.get(i)).attach( rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)] );
-                if (MAZEWORLD.oneoutoften())  (arrDoor.get(i)).locked = true;
+                if (MAZEWORLD.oneoutofahundred())  (arrDoor.get(i)).locked = true;
             }
     
             int exitDoor = MAZEWORLD.rand(0,arrDoor.size()-1);
@@ -153,6 +153,13 @@
     
             rooms[ENTRANCE].name="ENTRANCE";
             entranceroom=rooms[ENTRANCE];
+    
+            for (int i=0;i<ROOMCOUNT;i++)
+                if (rooms[i].allDoorsLocked()) {
+                    System.out.println("LOCK: " + rooms[i]);
+                    System.exit(0);
+                }
+    
             if (false) {
                 for (int i=0;i<ROOMCOUNT;i++) {
                     for (int j=0;j<rooms[i].doorcount;j++) {
@@ -222,6 +229,13 @@
                 doors[i] = new Door(this);
             }
             this.name = name;
+        }
+        public boolean allDoorsLocked() {
+            boolean bRet = false;
+            for (int i=0;i<this.doorcount;i++) {
+                bRet = bRet || (!this.doors[i].locked);
+            }
+            return !bRet;
         }
         public String oc(int d) {
             return ((this.doors[d].gonethroughalready) ? "o" : "c") + "/" + ((this.doors[d].locked) ? "X" : "-");
@@ -353,10 +367,25 @@
               .toString();
             return generatedString;
         }
+        public static boolean oneoutofahundred() {
+            Random random = new Random();
+            int r = random.nextInt(100 + 1 - 1) + 1;
+            return (r==1) ? true : false;
+        }
         public static boolean oneoutoften() {
             Random random = new Random();
             int r = random.nextInt(10 + 1 - 1) + 1;
             return (r==1) ? true : false;
+        }
+        public static boolean threeoutoften() {
+            Random random = new Random();
+            int r = random.nextInt(10 + 1 - 1) + 1;
+            return (r<=3) ? true : false;
+        }
+        public static boolean fiveoutoften() {
+            Random random = new Random();
+            int r = random.nextInt(10 + 1 - 1) + 1;
+            return (r<=5) ? true : false;
         }
         public static int randDoor() {
             Random random = new Random();

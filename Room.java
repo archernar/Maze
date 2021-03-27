@@ -34,6 +34,13 @@ public class Room {
         }
         this.name = name;
     }
+    public boolean allDoorsLocked() {
+        boolean bRet = false;
+        for (int i=0;i<this.doorcount;i++) {
+            bRet = bRet || (!this.doors[i].locked);
+        }
+        return !bRet;
+    }
     public String oc(int d) {
         return ((this.doors[d].gonethroughalready) ? "o" : "c") + "/" + ((this.doors[d].locked) ? "X" : "-");
     }
