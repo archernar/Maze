@@ -1,8 +1,8 @@
 echo "# Maze" > /tmp/readme
-figlet Maze.java | gawk '{print "// " $0}' >> /tmp/readme
-cat Maze.java >> /tmp/readme
-cat Door.java >> /tmp/readme
-cat Room.java >> /tmp/readme
+figlet Maze.java | gawk '{print "    // " $0}' >> /tmp/readme
+cat Maze.java | gawk '{print "    " $0}' >> /tmp/readme
+cat Room.java | gawk '{print "    " $0}' >> /tmp/readme
+cat Door.java | gawk '{print "    " $0}' >> /tmp/readme
 
 cat /tmp/readme | gawk '
 function ltrim(s) { sub(/^ */, "", s); return s }
