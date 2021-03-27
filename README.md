@@ -1,5 +1,7 @@
 # Maze
 ## Compile with javac -d ./classes *.java
+## Run with java -cp ./classes Maze
+## Run withi something like (altered JVM memory settings) java -cp ./classes -Xms1024m -Xmx2048m -Xss100m  Maze
 
     //  __  __                  _                  
     // |  \/  | __ _ _______   (_) __ ___   ____ _ 
