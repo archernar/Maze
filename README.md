@@ -88,17 +88,17 @@
                 }
                 else {
                     System.out.println("I am in " + r.name + "   There are doors here: " + r.doorMap());
-                    int turn = randDoor();
+                    int turn = MAZEWORLD.randDoor();
                     int ct = 0;
                     while ( (r.doors[turn].gonethroughalready) && (ct<10) && (r.doors[turn].locked)) {
                         if  (r.doors[turn].gonethroughalready) System.out.println("    " + (direction(turn)) + " Door is Open, Turning again...");
                         if  (r.doors[turn].locked) System.out.println("    " + (direction(turn)) + " Door is Locked, Turning again...");
                         //turn = random.nextInt(6 + 1 - 1) + 1;
-                        turn = nextdoor(turn);
+                        turn = MAZEWORLD.nextdoor(turn);
                         ct++;
                     }
                     if ( ct == 10 ) {
-                        turn = randDoor();
+                        turn = MAZEWORLD.randDoor();
                     }
                     String sz = "";
     
@@ -129,9 +129,9 @@
             return nRet;
         }
         private static Room randomRoom(Room rx) {
-            Room r = rooms[rand(0,ROOMCOUNT-1)]; 
+            Room r = rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)]; 
             while (r == rx)
-                r = rooms[rand(0,ROOMCOUNT-1)]; 
+                r = rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)]; 
             return r;
         }
     
@@ -150,11 +150,11 @@
             Room rr;
             for (int i = 0; i < arrDoor.size(); i++) {
                 rr = randomRoom((arrDoor.get(i)).roomTheDoorIsIn); 
-                (arrDoor.get(i)).attach( rooms[rand(0,ROOMCOUNT-1)] );
-                if (oneoutoften())  (arrDoor.get(i)).locked = true;
+                (arrDoor.get(i)).attach( rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)] );
+                if (MAZEWORLD.oneoutoften())  (arrDoor.get(i)).locked = true;
             }
     
-            int exitDoor = rand(0,arrDoor.size()-1);
+            int exitDoor = MAZEWORLD.rand(0,arrDoor.size()-1);
             (arrDoor.get(exitDoor)).attach( exitroom );
     
             rooms[ENTRANCE].name="ENTRANCE";
@@ -322,20 +322,24 @@
     // | (_| |
     //  \__,_|
     //        
+    import java.util.*;
     
-        private static boolean oneoutoften() {
+    public class MAZEWORLD {
+            
+        public static boolean oneoutoften() {
             Random random = new Random();
             int r = random.nextInt(10 + 1 - 1) + 1;
             return (r==1) ? true : false;
         }
-        private static int randDoor() {
+        public static int randDoor() {
             Random random = new Random();
             return random.nextInt(5 + 1 - 0) + 0;
         }
-        private static int rand(int min, int max) {
+        public static int rand(int min, int max) {
             Random random = new Random();
             return random.nextInt(max + 1 - min) + min;
         }
-        private static int nextdoor(int d) {
+        public static int nextdoor(int d) {
             return ( (d+1) > 5) ? 0 : d+1;
         }
+    }
