@@ -1,5 +1,6 @@
-
-cat Maze.java > /tmp/readme
+echo "# Maze" > /tmp/readme
+figlet Maze.java gawk '{print "// " $0}' >> /tmp/readme
+cat Maze.java >> /tmp/readme
 cat Door.java >> /tmp/readme
 cat Room.java >> /tmp/readme
 
