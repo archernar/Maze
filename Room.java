@@ -34,6 +34,21 @@ public class Room {
         }
         this.name = name;
     }
+
+    public void draw() {
+        String szOut = "";
+        String szTop = "+==========+";
+        String szBot = "+==========+";
+        String szName = "+== " + this.name + " ==+";
+        String szSpace = "+== " + "    " + " ==+";
+        System.out.println(szTop);
+        System.out.println(szName);
+        System.out.println(szSpace);
+        System.out.println(szSpace);
+        System.out.println(szSpace);
+        System.out.println(szBot);
+    }
+
     public boolean allDoorsLocked() {
         boolean bRet = false;
         for (int i=0;i<this.doorcount;i++) {
@@ -42,7 +57,7 @@ public class Room {
         return !bRet;
     }
     public String oc(int d) {
-        return ((this.doors[d].gonethroughalready) ? "o" : "c") + "/" + ((this.doors[d].locked) ? "X" : "-");
+        return ((this.doors[d].gonethroughalready) ? "X" : "-") + "/" + ((this.doors[d].locked) ? "X" : "-");
     }
     public String doorLook(int d) {
         return (this.doors[d].room).name  + "/" + oc(d);

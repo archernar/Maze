@@ -13,9 +13,9 @@
     // https://examples.javacodegeeks.com/java-lang-stackoverflowerror-how-to-solve-stackoverflowerror/
     
     public class Maze {
-        static final int ROOMCOUNT = 500000;
+        static final int ROOMCOUNT = 10;
         static final int ENTRANCE  = ROOMCOUNT-1;
-        static final int MAXDEPTH  = 400000;
+        static final int MAXDEPTH  = 500000;
         static Room[] rooms = new Room[ROOMCOUNT];
         static ArrayList<Door> arrDoor = new ArrayList<Door>();
         static ArrayList<Room> arrRoom = new ArrayList<Room>();
@@ -144,6 +144,8 @@
             Room rr;
             for (int i = 0; i < arrDoor.size(); i++) {
                 rr = randomRoom((arrDoor.get(i)).roomTheDoorIsIn); 
+                Room tR = rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)];
+    
                 (arrDoor.get(i)).attach( rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)] );
                 if (MAZEWORLD.oneoutofahundred())  (arrDoor.get(i)).locked = true;
             }
@@ -154,11 +156,14 @@
             rooms[ENTRANCE].name="ENTRANCE";
             entranceroom=rooms[ENTRANCE];
     
-            for (int i=0;i<ROOMCOUNT;i++)
+            for (int i=0;i<ROOMCOUNT;i++) {
+    //             rooms[i].draw();
+    //             System.out.println("");
                 if (rooms[i].allDoorsLocked()) {
                     System.out.println("LOCK: " + rooms[i]);
                     System.exit(0);
                 }
+            }
     
             if (false) {
                 for (int i=0;i<ROOMCOUNT;i++) {
@@ -230,6 +235,21 @@
             }
             this.name = name;
         }
+    
+        public void draw() {
+            String szOut = "";
+            String szTop = "+==========+";
+            String szBot = "+==========+";
+            String szName = "+== " + this.name + " ==+";
+            String szSpace = "+== " + "    " + " ==+";
+            System.out.println(szTop);
+            System.out.println(szName);
+            System.out.println(szSpace);
+            System.out.println(szSpace);
+            System.out.println(szSpace);
+            System.out.println(szBot);
+        }
+    
         public boolean allDoorsLocked() {
             boolean bRet = false;
             for (int i=0;i<this.doorcount;i++) {
@@ -238,7 +258,7 @@
             return !bRet;
         }
         public String oc(int d) {
-            return ((this.doors[d].gonethroughalready) ? "o" : "c") + "/" + ((this.doors[d].locked) ? "X" : "-");
+            return ((this.doors[d].gonethroughalready) ? "X" : "-") + "/" + ((this.doors[d].locked) ? "X" : "-");
         }
         public String doorLook(int d) {
             return (this.doors[d].room).name  + "/" + oc(d);
