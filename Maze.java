@@ -1,5 +1,6 @@
 import java.util.*;
 // https://examples.javacodegeeks.com/java-lang-stackoverflowerror-how-to-solve-stackoverflowerror/
+// https://github.com/archernar
 
 public class Maze {
     static final int ROOMCOUNT = 10;
