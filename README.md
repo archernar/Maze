@@ -20,7 +20,7 @@
         static ArrayList<Door> arrDoor = new ArrayList<Door>();
         static ArrayList<Room> arrRoom = new ArrayList<Room>();
         static Room exitroom = new Room("EXIT");
-        static Room entranceroom = new Room("ENTRANCE");
+        static Room entranceroom = new Room("ENTR");
         static int recursive_entry = 0;
         //
         // Non-Recursive Seek Method
@@ -147,13 +147,13 @@
                 Room tR = rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)];
     
                 (arrDoor.get(i)).attach( rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)] );
-                if (MAZEWORLD.oneoutofahundred())  (arrDoor.get(i)).locked = true;
+                if (MAZEWORLD.oneoutoften())  (arrDoor.get(i)).locked = true;
             }
     
             int exitDoor = MAZEWORLD.rand(0,arrDoor.size()-1);
             (arrDoor.get(exitDoor)).attach( exitroom );
     
-            rooms[ENTRANCE].name="ENTRANCE";
+            rooms[ENTRANCE].name="ENTR";
             entranceroom=rooms[ENTRANCE];
     
             for (int i=0;i<ROOMCOUNT;i++) {
@@ -165,11 +165,9 @@
                 }
             }
     
-            if (false) {
+            if (true) {
                 for (int i=0;i<ROOMCOUNT;i++) {
-                    for (int j=0;j<rooms[i].doorcount;j++) {
-                        System.out.println("  " + rooms[i].name + "  " + rooms[i].doorcount + "  " + rooms[i].doors[j].room.name);
-                    }
+                        System.out.println(rooms[i]);
                 }
             }
     
