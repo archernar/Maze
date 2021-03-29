@@ -14,6 +14,9 @@ public class Room {
     public String toString() {
         return this.name + " " + this.doorMap();
     }
+    public String toString(Room r) {
+        return this.name + " " + this.doorMap(r);
+    }
 
     public Room() {
         int n = Room.rand(1,MAXDOORSINROOM);
@@ -59,8 +62,22 @@ public class Room {
     public String oc(int d) {
         return ((this.doors[d].gonethroughalready) ? "X" : "-") + "/" + ((this.doors[d].locked) ? "X" : "-");
     }
+    public String doorLook(int d,Room r) {
+        String BoldOn  ="\033[48;5;160m";
+        String BoldOff ="\033[0m";
+        if ( this.doors[d].room != r ) {
+            BoldOn  ="";
+            BoldOff ="";
+        }
+        return BoldOn + (this.doors[d].room).name + BoldOff  + "/" + oc(d);
+    }
     public String doorLook(int d) {
-        return (this.doors[d].room).name  + "/" + oc(d);
+        String BoldOn  ="";
+        String BoldOff ="";
+        return BoldOn + (this.doors[d].room).name + BoldOff  + "/" + oc(d);
+    }
+    public String doorMap(Room r) {
+        return doorLook(0,r) + " " + doorLook(1,r) + " " + doorLook(2,r) + " " + doorLook(3,r) + " " + doorLook(4,r) + " " + doorLook(5,r);
     }
     public String doorMap() {
         return doorLook(0) + " " + doorLook(1) + " " + doorLook(2) + " " + doorLook(3) + " " + doorLook(4) + " " + doorLook(5);

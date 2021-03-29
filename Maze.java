@@ -56,16 +56,6 @@ public class Maze {
                 nRet=1;
             }
             else {
-                try {     
-                    System.out.println("In  : " + r);
-                }
-                catch (StackOverflowError e) {
-                   System.exit(1);
-                } 
-                catch (Exception e) {
-                   System.out.println(MAZEWORLD.rt());
-                   System.exit(1);
-                } 
                 int turn = MAZEWORLD.randDoor();
                 int ct = 0;
                 while ( (r.doors[turn].gonethroughalready) && (ct<10) && (r.doors[turn].locked)) {
@@ -89,6 +79,15 @@ public class Maze {
                     if (turn == MAZEWORLD.UP) sz = r.doorUp().name;
                     if (turn == MAZEWORLD.DOWN) sz = r.doorDown().name;
 
+                    Room roomTo=null;
+                    if (turn == MAZEWORLD.LEFT)  roomTo = r.doorLeft();
+                    if (turn == MAZEWORLD.RIGHT) roomTo = r.doorRight();
+                    if (turn == MAZEWORLD.LEFTLEFT)  roomTo = r.doorLeftLeft();
+                    if (turn == MAZEWORLD.RIGHTRIGHT) roomTo = r.doorRightRight();
+                    if (turn == MAZEWORLD.UP) roomTo = r.doorUp();
+                    if (turn == MAZEWORLD.DOWN) roomTo = r.doorDown();
+
+                    System.out.println("In  : " + r.toString(roomTo));
                     System.out.println("Turn: " + MAZEWORLD.direction(turn) + " " + sz + " " + recursive_entry);
 
                     if (turn == MAZEWORLD.LEFT)  r = r.doorLeft();

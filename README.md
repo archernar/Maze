@@ -67,16 +67,6 @@
                     nRet=1;
                 }
                 else {
-                    try {     
-                        System.out.println("In  : " + r);
-                    }
-                    catch (StackOverflowError e) {
-                       System.exit(1);
-                    } 
-                    catch (Exception e) {
-                       System.out.println(MAZEWORLD.rt());
-                       System.exit(1);
-                    } 
                     int turn = MAZEWORLD.randDoor();
                     int ct = 0;
                     while ( (r.doors[turn].gonethroughalready) && (ct<10) && (r.doors[turn].locked)) {
@@ -100,6 +90,15 @@
                         if (turn == MAZEWORLD.UP) sz = r.doorUp().name;
                         if (turn == MAZEWORLD.DOWN) sz = r.doorDown().name;
     
+                        Room roomTo=null;
+                        if (turn == MAZEWORLD.LEFT)  roomTo = r.doorLeft();
+                        if (turn == MAZEWORLD.RIGHT) roomTo = r.doorRight();
+                        if (turn == MAZEWORLD.LEFTLEFT)  roomTo = r.doorLeftLeft();
+                        if (turn == MAZEWORLD.RIGHTRIGHT) roomTo = r.doorRightRight();
+                        if (turn == MAZEWORLD.UP) roomTo = r.doorUp();
+                        if (turn == MAZEWORLD.DOWN) roomTo = r.doorDown();
+    
+                        System.out.println("In  : " + r.toString(roomTo));
                         System.out.println("Turn: " + MAZEWORLD.direction(turn) + " " + sz + " " + recursive_entry);
     
                         if (turn == MAZEWORLD.LEFT)  r = r.doorLeft();
@@ -214,6 +213,9 @@
         public String toString() {
             return this.name + " " + this.doorMap();
         }
+        public String toString(Room r) {
+            return this.name + " " + this.doorMap(r);
+        }
     
         public Room() {
             int n = Room.rand(1,MAXDOORSINROOM);
@@ -259,8 +261,22 @@
         public String oc(int d) {
             return ((this.doors[d].gonethroughalready) ? "X" : "-") + "/" + ((this.doors[d].locked) ? "X" : "-");
         }
+        public String doorLook(int d,Room r) {
+            String BoldOn  ="\033[48;5;160m";
+            String BoldOff ="\033[0m";
+            if ( this.doors[d].room != r ) {
+                BoldOn  ="";
+                BoldOff ="";
+            }
+            return BoldOn + (this.doors[d].room).name + BoldOff  + "/" + oc(d);
+        }
         public String doorLook(int d) {
-            return (this.doors[d].room).name  + "/" + oc(d);
+            String BoldOn  ="";
+            String BoldOff ="";
+            return BoldOn + (this.doors[d].room).name + BoldOff  + "/" + oc(d);
+        }
+        public String doorMap(Room r) {
+            return doorLook(0,r) + " " + doorLook(1,r) + " " + doorLook(2,r) + " " + doorLook(3,r) + " " + doorLook(4,r) + " " + doorLook(5,r);
         }
         public String doorMap() {
             return doorLook(0) + " " + doorLook(1) + " " + doorLook(2) + " " + doorLook(3) + " " + doorLook(4) + " " + doorLook(5);
