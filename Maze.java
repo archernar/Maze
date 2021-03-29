@@ -87,8 +87,8 @@ public class Maze {
                     if (turn == MAZEWORLD.UP) roomTo = r.doorUp();
                     if (turn == MAZEWORLD.DOWN) roomTo = r.doorDown();
 
-                    System.out.println("In  : " + r.toString(roomTo));
-                    System.out.println("Turn: " + MAZEWORLD.direction(turn) + " " + sz + " " + recursive_entry);
+                    System.out.println("In  : " + r.toString(roomTo) + "  Turn: " + MAZEWORLD.direction(turn) + " " + sz + " " + recursive_entry);
+                    // System.out.println("Turn: " + MAZEWORLD.direction(turn) + " " + sz + " " + recursive_entry);
 
                     if (turn == MAZEWORLD.LEFT)  r = r.doorLeft();
                     if (turn == MAZEWORLD.RIGHT) r = r.doorRight();
@@ -156,8 +156,9 @@ public class Maze {
 
         if (true) {
             for (int i=0;i<ROOMCOUNT;i++) {
-                    System.out.println(rooms[i]);
+                    System.out.println("Room: " + rooms[i]);
             }
+            System.out.println("");
         }
 
        try {     

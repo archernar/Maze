@@ -12,10 +12,10 @@ public class Room {
         return random.nextInt(max + 1 - min) + min;
     }
     public String toString() {
-        return this.name + " " + this.doorMap();
+        return this.name + "   " + this.doorMap();
     }
     public String toString(Room r) {
-        return this.name + " " + this.doorMap(r);
+        return this.name + "   " + this.doorMap(r);
     }
 
     public Room() {
@@ -63,13 +63,21 @@ public class Room {
         return ((this.doors[d].gonethroughalready) ? "X" : "-") + "/" + ((this.doors[d].locked) ? "X" : "-");
     }
     public String doorLook(int d,Room r) {
-        String BoldOn  ="\033[48;5;160m";
-        String BoldOff ="\033[0m";
-        if ( this.doors[d].room != r ) {
-            BoldOn  ="";
-            BoldOff ="";
+        String BoldOn  = "";
+        String BoldOff = "";
+        if ( this.doors[d].room == r ) {
+            BoldOn  = TERMCTRL.setTermString(TERMCTRL.FG_GREEN, TERMCTRL.BG_CYAN);
+            BoldOff = TERMCTRL.setTermString(TERMCTRL.FG_RESET, TERMCTRL.BG_BLACK);
         }
-        return BoldOn + (this.doors[d].room).name + BoldOff  + "/" + oc(d);
+        if ( this.doors[d].locked ) {
+            BoldOn  = TERMCTRL.setTermString(TERMCTRL.FG_RED, TERMCTRL.BG_CYAN);
+            BoldOff = TERMCTRL.setTermString(TERMCTRL.FG_RESET, TERMCTRL.BG_BLACK);
+        }
+        if ( this.doors[d].gonethroughalready ) {
+            BoldOn  = TERMCTRL.setTermString(TERMCTRL.FG_YELLOW, TERMCTRL.BG_CYAN);
+            BoldOff = TERMCTRL.setTermString(TERMCTRL.FG_RESET, TERMCTRL.BG_BLACK);
+        }
+        return BoldOn + (this.doors[d].room).name + BoldOff + "/" + oc(d);
     }
     public String doorLook(int d) {
         String BoldOn  ="";
