@@ -28,6 +28,7 @@ do
                git add Room.java
                git add MAZEWORLD.java
                git add TERMCTRL.java
+               git add ClassMethodList.java
                git add pushit
                git add buildmd
                git add README.md
