@@ -8,6 +8,9 @@ public class MAZEWORLD {
     static final int RIGHTRIGHT = 3;
     static final int UP = 4;
     static final int DOWN = 5;
+    public MAZEWORLD() {
+        super();
+    }
 
     public static String randomString() {
         int length = 4;

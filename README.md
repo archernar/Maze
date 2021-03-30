@@ -215,6 +215,37 @@
     // |  _ < (_) | (_) | | | | | |_ | | (_| |\ V / (_| |
     // |_| \_\___/ \___/|_| |_| |_(_)/ |\__,_| \_/ \__,_|
     //                             |__/                  
+    // constuctor: public Room(java.lang.String)
+    // constuctor: public Room()
+    // public method: public java.lang.String Room.toString()
+    // public method: public java.lang.String Room.toString(Room)
+    // public method: public java.lang.String Room.oc(int)
+    // public method: public java.lang.String Room.doorMap()
+    // public method: public java.lang.String Room.doorMap(Room)
+    // public method: public java.lang.String Room.doorLook(int)
+    // public method: public java.lang.String Room.doorLook(int,Room)
+    // public method: public void Room.draw()
+    // public method: public boolean Room.allDoorsLocked()
+    // public method: public Room Room.doorLeft()
+    // public method: public Room Room.doorRight()
+    // public method: public Room Room.doorLeftLeft()
+    // public method: public Room Room.doorRightRight()
+    // public method: public Room Room.doorUp()
+    // public method: public Room Room.doorDown()
+    // public method: public boolean Room.doorLeftGoneThroughAlready()
+    // public method: public boolean Room.doorRightGoneThroughAlready()
+    // public method: public boolean Room.doorLeftLeftGoneThroughAlready()
+    // public method: public boolean Room.doorRightiRightGoneThroughAlready()
+    // public method: public boolean Room.doorUpGoneThroughAlready()
+    // public method: public boolean Room.doorDownGoneThroughAlready()
+    // public method: public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
+    // public method: public final void java.lang.Object.wait() throws java.lang.InterruptedException
+    // public method: public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
+    // public method: public boolean java.lang.Object.equals(java.lang.Object)
+    // public method: public native int java.lang.Object.hashCode()
+    // public method: public final native java.lang.Class java.lang.Object.getClass()
+    // public method: public final native void java.lang.Object.notify()
+    // public method: public final native void java.lang.Object.notifyAll()
     import java.util.Random;
     
     
@@ -362,6 +393,19 @@
     // | |_| | (_) | (_) | | _ | | (_| |\ V / (_| |
     // |____/ \___/ \___/|_|(_)/ |\__,_| \_/ \__,_|
     //                       |__/                  
+    // constuctor: public Door(Room)
+    // constuctor: public Door()
+    // public method: public void Door.attach(Room)
+    // public method: public static int Door.rand(int,int)
+    // public method: public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
+    // public method: public final void java.lang.Object.wait() throws java.lang.InterruptedException
+    // public method: public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
+    // public method: public boolean java.lang.Object.equals(java.lang.Object)
+    // public method: public java.lang.String java.lang.Object.toString()
+    // public method: public native int java.lang.Object.hashCode()
+    // public method: public final native java.lang.Class java.lang.Object.getClass()
+    // public method: public final native void java.lang.Object.notify()
+    // public method: public final native void java.lang.Object.notifyAll()
     import java.util.Random;
     
     
@@ -396,6 +440,28 @@
     // | |  | |/ ___ \  / /_| |___  \ V  V /| |_| |  _ <| |___| |_| | | | (_| |\ V / (_| |
     // |_|  |_/_/   \_\/____|_____|  \_/\_/  \___/|_| \_\_____|____(_)/ |\__,_| \_/ \__,_|
     //                                                              |__/                  
+    // constuctor: public MAZEWORLD()
+    // public method: public static java.lang.String MAZEWORLD.direction(int)
+    // public method: public static java.lang.String MAZEWORLD.rt()
+    // public method: public static java.lang.String MAZEWORLD.randomString()
+    // public method: public static java.lang.String MAZEWORLD.randomString2()
+    // public method: public static boolean MAZEWORLD.oneoutofahundred()
+    // public method: public static boolean MAZEWORLD.zerototen()
+    // public method: public static boolean MAZEWORLD.oneoutoften()
+    // public method: public static boolean MAZEWORLD.threeoutoften()
+    // public method: public static boolean MAZEWORLD.fiveoutoften()
+    // public method: public static int MAZEWORLD.randDoor()
+    // public method: public static int MAZEWORLD.rand(int,int)
+    // public method: public static int MAZEWORLD.nextdoor(int)
+    // public method: public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
+    // public method: public final void java.lang.Object.wait() throws java.lang.InterruptedException
+    // public method: public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
+    // public method: public boolean java.lang.Object.equals(java.lang.Object)
+    // public method: public java.lang.String java.lang.Object.toString()
+    // public method: public native int java.lang.Object.hashCode()
+    // public method: public final native java.lang.Class java.lang.Object.getClass()
+    // public method: public final native void java.lang.Object.notify()
+    // public method: public final native void java.lang.Object.notifyAll()
     import java.util.*;
     
     public class MAZEWORLD {
@@ -406,6 +472,9 @@
         static final int RIGHTRIGHT = 3;
         static final int UP = 4;
         static final int DOWN = 5;
+        public MAZEWORLD() {
+            super();
+        }
     
         public static String randomString() {
             int length = 4;
