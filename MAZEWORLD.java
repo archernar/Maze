@@ -38,6 +38,11 @@ public class MAZEWORLD {
         int r = random.nextInt(100 + 1 - 1) + 1;
         return (r==1) ? true : false;
     }
+    public static boolean zerototen() {
+        Random random = new Random();
+        int r = random.nextInt(10 + 1 - 0) + 0;
+        return (r==1) ? true : false;
+    }
     public static boolean oneoutoften() {
         Random random = new Random();
         int r = random.nextInt(10 + 1 - 1) + 1;

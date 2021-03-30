@@ -14,7 +14,7 @@
     // https://github.com/archernar
     
     public class Maze {
-        static final int ROOMCOUNT = 10;
+        static final int ROOMCOUNT = 10000;
         static final int ENTRANCE  = ROOMCOUNT-1;
         static final int MAXDEPTH  = 500000;
         static Room[] rooms = new Room[ROOMCOUNT];
@@ -23,6 +23,7 @@
         static Room exitroom = new Room("EXIT");
         static Room entranceroom = new Room("ENTR");
         static int recursive_entry = 0;
+        static int uniquemoves = 0;
         //
         // Non-Recursive Seek Method
         //
@@ -69,15 +70,17 @@
                 else {
                     int turn = MAZEWORLD.randDoor();
                     int ct = 0;
+                    uniquemoves++;
                     while ( (r.doors[turn].gonethroughalready) && (ct<10) && (r.doors[turn].locked)) {
-                        if  (r.doors[turn].gonethroughalready) System.out.println("Turn: " + (MAZEWORLD.direction(turn)) + " Door-Open, Turn again");
-                        if  (r.doors[turn].locked) System.out.println("Turn: " + (MAZEWORLD.direction(turn)) + " Door-Locked, Turn again");
+                        if  (r.doors[turn].gonethroughalready) System.out.println("Turn: " + (MAZEWORLD.direction(turn)) + " Door-Open, Turn again " + r);
+                        if  (r.doors[turn].locked) System.out.println("Turn: " + (MAZEWORLD.direction(turn)) + " Door-Locked, Turn again" + r);
                         turn = MAZEWORLD.nextdoor(turn);
                         ct++;
                     }
                     // Go through any door locked of otherwise
-                    if ( ct == 10 ) {
+                    if ( ct == 100 ) {
                         System.out.println("Done: " + r);
+                        uniquemoves--;
                         nRet=1;
                     }
                     else {
@@ -147,7 +150,7 @@
                 Room tR = rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)];
     
                 (arrDoor.get(i)).attach( rooms[MAZEWORLD.rand(0,ROOMCOUNT-1)] );
-                if (MAZEWORLD.oneoutoften())  (arrDoor.get(i)).locked = true;
+                if (MAZEWORLD.zerototen())  (arrDoor.get(i)).locked = true;
             }
     
             int exitDoor = MAZEWORLD.rand(0,arrDoor.size()-1);
@@ -185,7 +188,7 @@
            System.out.println(MAZEWORLD.rt());
            System.out.println("Maze: " + ROOMCOUNT      + " rooms");
            System.out.println("Maze: " + arrDoor.size() + " doors");
-    
+           System.out.println("UNIQ: " + uniquemoves);
     }
     
     
@@ -414,6 +417,11 @@
         public static boolean oneoutofahundred() {
             Random random = new Random();
             int r = random.nextInt(100 + 1 - 1) + 1;
+            return (r==1) ? true : false;
+        }
+        public static boolean zerototen() {
+            Random random = new Random();
+            int r = random.nextInt(10 + 1 - 0) + 0;
             return (r==1) ? true : false;
         }
         public static boolean oneoutoften() {
