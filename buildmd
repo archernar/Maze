@@ -26,6 +26,12 @@ javac -d ./classes ClassMethodList.java;export CLASSPATH="./classes";java ClassM
 cat MAZEWORLD.java | gawk '{print "    " $0}' >> /tmp/readme
 
 
+echo "# Terminal Control" >> /tmp/readme
+echo "" >> /tmp/readme
+THISCLASS=TERMCTRL
+figlet -w 88 $THISCLASS.java | gawk '{print "    // " $0}' >> /tmp/readme
+javac -d ./classes ClassMethodList.java;export CLASSPATH="./classes";java ClassMethodList $THISCLASS | gawk '{print "    // " $0}' >> /tmp/readme
+cat $THISCLASS.java | gawk '{print "    " $0}' >> /tmp/readme
 
 
 cat /tmp/readme

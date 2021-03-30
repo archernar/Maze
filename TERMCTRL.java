@@ -33,14 +33,16 @@ public class TERMCTRL {
     static final int FG_WHITE = 97;
     static final int FG_RESET = 0;
 
+    public TERMCTRL() {
+        super();
+    }
+    static String setTermString(int FG, int BG) {
+        return "\033[" + FG + "m";
 
-static String setTermString(int FG, int BG) {
-     return "\033[" + FG + "m";
-
-}
-static void setTerm(int FG, int BG) {
-    System.out.print("\033[1;" + FG + ";" + BG + "m");
-}
+    }
+    static void setTerm(int FG, int BG) {
+        System.out.print("\033[1;" + FG + ";" + BG + "m");
+    }
 }
 
 

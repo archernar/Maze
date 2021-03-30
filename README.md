@@ -552,3 +552,75 @@
         }
     
     }
+# Terminal Control
+
+    //  _____ _____ ____  __  __  ____ _____ ____  _        _                  
+    // |_   _| ____|  _ \|  \/  |/ ___|_   _|  _ \| |      (_) __ ___   ____ _ 
+    //   | | |  _| | |_) | |\/| | |     | | | |_) | |      | |/ _` \ \ / / _` |
+    //   | | | |___|  _ <| |  | | |___  | | |  _ <| |___ _ | | (_| |\ V / (_| |
+    //   |_| |_____|_| \_\_|  |_|\____| |_| |_| \_\_____(_)/ |\__,_| \_/ \__,_|
+    //                                                   |__/                  
+    // constuctor: public TERMCTRL()
+    // public method: public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
+    // public method: public final void java.lang.Object.wait() throws java.lang.InterruptedException
+    // public method: public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
+    // public method: public boolean java.lang.Object.equals(java.lang.Object)
+    // public method: public java.lang.String java.lang.Object.toString()
+    // public method: public native int java.lang.Object.hashCode()
+    // public method: public final native java.lang.Class java.lang.Object.getClass()
+    // public method: public final native void java.lang.Object.notify()
+    // public method: public final native void java.lang.Object.notifyAll()
+    import java.util.*;
+    
+    public class TERMCTRL {
+    
+        static final String WHITEONRED = "\033[1;97;41m";
+        static final String WHITEONBLACK = "\033[1;97;40m";
+        static final int BG_DEF = 49;
+        static final int BG_BLACK = 30;
+        static final int BG_RED = 41;
+        static final int BG_GREEN = 42;
+        static final int BG_YELLOW = 43;
+        static final int BG_BLUE = 44;
+        static final int BG_MAGENTA = 45;
+        static final int BG_PURPLE = 45;
+        static final int BG_CYAN = 46;
+        static final int BG_LGRAY = 47;
+        static final int BG_DGRAY = 100;
+        static final int BG_LRED = 101;
+        static final int BG_LREEN = 102;
+        static final int BG_LYELLOW = 103;
+        static final int BG_LBLUE = 104;
+        static final int BG_LMAGENTA = 105;
+        static final int BG_PINK = 105;
+        static final int BG_LCYAN = 106;
+        static final int BG_WHITE = 107;
+    
+        static final int FG_DEF = 39;
+        static final int FG_BLACK = 30;
+        static final int FG_RED = 31;
+        static final int FG_GREEN = 32;
+        static final int FG_YELLOW = 33;
+        static final int FG_BLUE = 34;
+        static final int FG_WHITE = 97;
+        static final int FG_RESET = 0;
+    
+        public TERMCTRL() {
+            super();
+        }
+        static String setTermString(int FG, int BG) {
+            return "\033[" + FG + "m";
+    
+        }
+        static void setTerm(int FG, int BG) {
+            System.out.print("\033[1;" + FG + ";" + BG + "m");
+        }
+    }
+    
+    
+    
+    // https://askubuntu.com/questions/558280/changing-colour-of-text-and-background-of-terminal
+    
+    // To set both the foreground and background colours at once, use ther form "\033[S;FG;BGm". 
+    // For example: echo -e "\e[1;97;41m" (bold white foreground on red background)
+    
