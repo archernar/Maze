@@ -13,6 +13,9 @@ public class Maze {
     static Room entranceroom = new Room("ENTR");
     static int recursive_entry = 0;
     static int uniquemoves = 0;
+    public Maze() {
+        super();
+    }
     //
     // Non-Recursive Seek Method
     //

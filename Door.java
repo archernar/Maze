@@ -10,6 +10,9 @@ public class Door {
         Random random = new Random();
         return random.nextInt(max + 1 - min) + min;
     }
+   public Door() {
+       this.roomTheDoorIsIn = null;
+   }
    public Door(Room r) {
        this.roomTheDoorIsIn = r;
    }

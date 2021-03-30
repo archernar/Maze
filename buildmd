@@ -4,7 +4,7 @@ echo "    Run with java -cp ./classes Maze" >> /tmp/readme
 echo "    Run with something like (altered JVM memory settings) java -cp ./classes -Xms1024m -Xmx2048m -Xss100m  Maze" >> /tmp/readme
 echo "" >> /tmp/readme
 figlet Maze.java | gawk '{print "    // " $0}' >> /tmp/readme
-javac ClassMethodList.java;export CLASSPATH="./:./classes";java ClassMethodList Maze  >> /tmp/readme
+javac -d ./classes ClassMethodList.java;export CLASSPATH="./classes";java ClassMethodList Maze | gawk '{print "    // " $0}' >> /tmp/readme
 cat Maze.java | gawk '{print "    " $0}' >> /tmp/readme
 
 echo "# Room" >> /tmp/readme

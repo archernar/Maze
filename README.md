@@ -9,6 +9,17 @@
     // | |  | | (_| |/ /  __/_ | | (_| |\ V / (_| |
     // |_|  |_|\__,_/___\___(_)/ |\__,_| \_/ \__,_|
     //                       |__/                  
+    // constuctor: public Maze()
+    // public method: public static void Maze.main(java.lang.String[])
+    // public method: public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
+    // public method: public final void java.lang.Object.wait() throws java.lang.InterruptedException
+    // public method: public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
+    // public method: public boolean java.lang.Object.equals(java.lang.Object)
+    // public method: public java.lang.String java.lang.Object.toString()
+    // public method: public native int java.lang.Object.hashCode()
+    // public method: public final native java.lang.Class java.lang.Object.getClass()
+    // public method: public final native void java.lang.Object.notify()
+    // public method: public final native void java.lang.Object.notifyAll()
     import java.util.*;
     // https://examples.javacodegeeks.com/java-lang-stackoverflowerror-how-to-solve-stackoverflowerror/
     // https://github.com/archernar
@@ -24,6 +35,9 @@
         static Room entranceroom = new Room("ENTR");
         static int recursive_entry = 0;
         static int uniquemoves = 0;
+        public Maze() {
+            super();
+        }
         //
         // Non-Recursive Seek Method
         //
@@ -360,6 +374,9 @@
             Random random = new Random();
             return random.nextInt(max + 1 - min) + min;
         }
+       public Door() {
+           this.roomTheDoorIsIn = null;
+       }
        public Door(Room r) {
            this.roomTheDoorIsIn = r;
        }
