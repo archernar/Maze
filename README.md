@@ -10,16 +10,20 @@
     // |_|  |_|\__,_/___\___(_)/ |\__,_| \_/ \__,_|
     //                       |__/                  
     // constuctor: public Maze()
-    // public method: public static void Maze.main(java.lang.String[])
-    // public method: public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
-    // public method: public final void java.lang.Object.wait() throws java.lang.InterruptedException
-    // public method: public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
-    // public method: public boolean java.lang.Object.equals(java.lang.Object)
-    // public method: public java.lang.String java.lang.Object.toString()
-    // public method: public native int java.lang.Object.hashCode()
-    // public method: public final native java.lang.Class java.lang.Object.getClass()
-    // public method: public final native void java.lang.Object.notify()
-    // public method: public final native void java.lang.Object.notifyAll()
+    // not-specified static ROOMCOUNT
+    // not-specified static ENTRANCE
+    // not-specified static MAXDEPTH
+    // not-specified static rooms
+    // not-specified static arrDoor
+    // not-specified static arrRoom
+    // not-specified static exitroom
+    // not-specified static entranceroom
+    // not-specified static recursive_entry
+    // not-specified static uniquemoves
+    // private static int Maze.Seekr(Room,Room,Room)
+    // private static Room Maze.randomRoom(Room)
+    // private static int Maze.Seek(Room,Room,Room)
+    // public static void Maze.main(java.lang.String[])
     import java.util.*;
     // https://examples.javacodegeeks.com/java-lang-stackoverflowerror-how-to-solve-stackoverflowerror/
     // https://github.com/archernar
@@ -217,35 +221,32 @@
     //                             |__/                  
     // constuctor: public Room(java.lang.String)
     // constuctor: public Room()
-    // public method: public java.lang.String Room.toString()
-    // public method: public java.lang.String Room.toString(Room)
-    // public method: public java.lang.String Room.oc(int)
-    // public method: public java.lang.String Room.doorMap()
-    // public method: public java.lang.String Room.doorMap(Room)
-    // public method: public java.lang.String Room.doorLook(int)
-    // public method: public java.lang.String Room.doorLook(int,Room)
-    // public method: public void Room.draw()
-    // public method: public boolean Room.allDoorsLocked()
-    // public method: public Room Room.doorLeft()
-    // public method: public Room Room.doorRight()
-    // public method: public Room Room.doorLeftLeft()
-    // public method: public Room Room.doorRightRight()
-    // public method: public Room Room.doorUp()
-    // public method: public Room Room.doorDown()
-    // public method: public boolean Room.doorLeftGoneThroughAlready()
-    // public method: public boolean Room.doorRightGoneThroughAlready()
-    // public method: public boolean Room.doorLeftLeftGoneThroughAlready()
-    // public method: public boolean Room.doorRightiRightGoneThroughAlready()
-    // public method: public boolean Room.doorUpGoneThroughAlready()
-    // public method: public boolean Room.doorDownGoneThroughAlready()
-    // public method: public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
-    // public method: public final void java.lang.Object.wait() throws java.lang.InterruptedException
-    // public method: public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
-    // public method: public boolean java.lang.Object.equals(java.lang.Object)
-    // public method: public native int java.lang.Object.hashCode()
-    // public method: public final native java.lang.Class java.lang.Object.getClass()
-    // public method: public final native void java.lang.Object.notify()
-    // public method: public final native void java.lang.Object.notifyAll()
+    // public public doors
+    // public public name
+    // public public doorcount
+    // not-specified static MAXDOORSINROOM
+    // private static int Room.rand(int,int)
+    // public java.lang.String Room.toString()
+    // public java.lang.String Room.toString(Room)
+    // public java.lang.String Room.oc(int)
+    // public java.lang.String Room.doorMap()
+    // public java.lang.String Room.doorMap(Room)
+    // public java.lang.String Room.doorLook(int)
+    // public java.lang.String Room.doorLook(int,Room)
+    // public void Room.draw()
+    // public boolean Room.allDoorsLocked()
+    // public Room Room.doorLeft()
+    // public Room Room.doorRight()
+    // public Room Room.doorLeftLeft()
+    // public Room Room.doorRightRight()
+    // public Room Room.doorUp()
+    // public Room Room.doorDown()
+    // public boolean Room.doorLeftGoneThroughAlready()
+    // public boolean Room.doorRightGoneThroughAlready()
+    // public boolean Room.doorLeftLeftGoneThroughAlready()
+    // public boolean Room.doorRightiRightGoneThroughAlready()
+    // public boolean Room.doorUpGoneThroughAlready()
+    // public boolean Room.doorDownGoneThroughAlready()
     import java.util.Random;
     
     
@@ -395,17 +396,12 @@
     //                       |__/                  
     // constuctor: public Door(Room)
     // constuctor: public Door()
-    // public method: public void Door.attach(Room)
-    // public method: public static int Door.rand(int,int)
-    // public method: public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
-    // public method: public final void java.lang.Object.wait() throws java.lang.InterruptedException
-    // public method: public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
-    // public method: public boolean java.lang.Object.equals(java.lang.Object)
-    // public method: public java.lang.String java.lang.Object.toString()
-    // public method: public native int java.lang.Object.hashCode()
-    // public method: public final native java.lang.Class java.lang.Object.getClass()
-    // public method: public final native void java.lang.Object.notify()
-    // public method: public final native void java.lang.Object.notifyAll()
+    // public public room
+    // public public roomTheDoorIsIn
+    // public public gonethroughalready
+    // public public locked
+    // public static int Door.rand(int,int)
+    // public void Door.attach(Room)
     import java.util.Random;
     
     
@@ -441,27 +437,26 @@
     // |_|  |_/_/   \_\/____|_____|  \_/\_/  \___/|_| \_\_____|____(_)/ |\__,_| \_/ \__,_|
     //                                                              |__/                  
     // constuctor: public MAZEWORLD()
-    // public method: public static java.lang.String MAZEWORLD.direction(int)
-    // public method: public static java.lang.String MAZEWORLD.rt()
-    // public method: public static java.lang.String MAZEWORLD.randomString()
-    // public method: public static java.lang.String MAZEWORLD.randomString2()
-    // public method: public static boolean MAZEWORLD.oneoutofahundred()
-    // public method: public static boolean MAZEWORLD.zerototen()
-    // public method: public static boolean MAZEWORLD.oneoutoften()
-    // public method: public static boolean MAZEWORLD.threeoutoften()
-    // public method: public static boolean MAZEWORLD.fiveoutoften()
-    // public method: public static int MAZEWORLD.randDoor()
-    // public method: public static int MAZEWORLD.rand(int,int)
-    // public method: public static int MAZEWORLD.nextdoor(int)
-    // public method: public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
-    // public method: public final void java.lang.Object.wait() throws java.lang.InterruptedException
-    // public method: public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
-    // public method: public boolean java.lang.Object.equals(java.lang.Object)
-    // public method: public java.lang.String java.lang.Object.toString()
-    // public method: public native int java.lang.Object.hashCode()
-    // public method: public final native java.lang.Class java.lang.Object.getClass()
-    // public method: public final native void java.lang.Object.notify()
-    // public method: public final native void java.lang.Object.notifyAll()
+    // not-specified static directions
+    // not-specified static LEFT
+    // not-specified static RIGHT
+    // not-specified static LEFTLEFT
+    // not-specified static RIGHTRIGHT
+    // not-specified static UP
+    // not-specified static DOWN
+    // private static boolean MAZEWORLD.lambda$randomString2$0(int)
+    // public static java.lang.String MAZEWORLD.direction(int)
+    // public static java.lang.String MAZEWORLD.rt()
+    // public static java.lang.String MAZEWORLD.randomString()
+    // public static java.lang.String MAZEWORLD.randomString2()
+    // public static boolean MAZEWORLD.oneoutofahundred()
+    // public static boolean MAZEWORLD.zerototen()
+    // public static boolean MAZEWORLD.oneoutoften()
+    // public static boolean MAZEWORLD.threeoutoften()
+    // public static boolean MAZEWORLD.fiveoutoften()
+    // public static int MAZEWORLD.randDoor()
+    // public static int MAZEWORLD.rand(int,int)
+    // public static int MAZEWORLD.nextdoor(int)
     import java.util.*;
     
     public class MAZEWORLD {
@@ -561,15 +556,35 @@
     //   |_| |_____|_| \_\_|  |_|\____| |_| |_| \_\_____(_)/ |\__,_| \_/ \__,_|
     //                                                   |__/                  
     // constuctor: public TERMCTRL()
-    // public method: public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
-    // public method: public final void java.lang.Object.wait() throws java.lang.InterruptedException
-    // public method: public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
-    // public method: public boolean java.lang.Object.equals(java.lang.Object)
-    // public method: public java.lang.String java.lang.Object.toString()
-    // public method: public native int java.lang.Object.hashCode()
-    // public method: public final native java.lang.Class java.lang.Object.getClass()
-    // public method: public final native void java.lang.Object.notify()
-    // public method: public final native void java.lang.Object.notifyAll()
+    // not-specified static WHITEONRED
+    // not-specified static WHITEONBLACK
+    // not-specified static BG_DEF
+    // not-specified static BG_BLACK
+    // not-specified static BG_RED
+    // not-specified static BG_GREEN
+    // not-specified static BG_YELLOW
+    // not-specified static BG_BLUE
+    // not-specified static BG_MAGENTA
+    // not-specified static BG_PURPLE
+    // not-specified static BG_CYAN
+    // not-specified static BG_LGRAY
+    // not-specified static BG_DGRAY
+    // not-specified static BG_LRED
+    // not-specified static BG_LREEN
+    // not-specified static BG_LYELLOW
+    // not-specified static BG_LBLUE
+    // not-specified static BG_LMAGENTA
+    // not-specified static BG_PINK
+    // not-specified static BG_LCYAN
+    // not-specified static BG_WHITE
+    // not-specified static FG_DEF
+    // not-specified static FG_BLACK
+    // not-specified static FG_RED
+    // not-specified static FG_GREEN
+    // not-specified static FG_YELLOW
+    // not-specified static FG_BLUE
+    // not-specified static FG_WHITE
+    // not-specified static FG_RESET
     import java.util.*;
     
     public class TERMCTRL {

@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Field;
 import java.lang.reflect.Constructor;
 
 public class ClassMethodList {
@@ -42,9 +44,22 @@ public class ClassMethodList {
             System.exit(1);
         }
         Class tClass = t.getClass();
-        Method[] methods = tClass.getMethods();
-        for (int i = 0; i < methods.length; i++) {
-            System.out.println("public method: " + methods[i]);
+        Method[] methods = tClass.getDeclaredMethods();
+        Field[] fields = tClass.getDeclaredFields();
+        for (Field field : fields) {
+            int m = field.getModifiers();
+            String szModifier = "not-specified";
+            if (Modifier.isPublic(m))  szModifier = "public";
+            if (Modifier.isPrivate(m)) szModifier = "private";
+            if (Modifier.isProtected(m)) szModifier = "protected";
+            System.out.println(szModifier + " " + (""+field).split(" ",5)[0] + " " + field.getName());
         }
+
+        for (int i = 0; i < methods.length; i++) if (Modifier.isStatic(methods[i].getModifiers()) && Modifier.isPrivate(methods[i].getModifiers()) )  System.out.println("" + methods[i]);
+        for (int i = 0; i < methods.length; i++) if (Modifier.isStatic(methods[i].getModifiers()) && Modifier.isPublic(methods[i].getModifiers()) )  System.out.println("" + methods[i]);
+        for (int i = 0; i < methods.length; i++) if (Modifier.isStatic(methods[i].getModifiers()) && Modifier.isProtected(methods[i].getModifiers()) )  System.out.println("" + methods[i]);
+        for (int i = 0; i < methods.length; i++) if (!Modifier.isStatic(methods[i].getModifiers()) && Modifier.isPrivate(methods[i].getModifiers()) )  System.out.println("" + methods[i]);
+        for (int i = 0; i < methods.length; i++) if (!Modifier.isStatic(methods[i].getModifiers()) && Modifier.isPublic(methods[i].getModifiers()) )  System.out.println("" + methods[i]);
+        for (int i = 0; i < methods.length; i++) if (!Modifier.isStatic(methods[i].getModifiers()) && Modifier.isProtected(methods[i].getModifiers()) )  System.out.println("" + methods[i]);
     }
 }
